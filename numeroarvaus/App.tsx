@@ -5,14 +5,14 @@ import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 export default function App() {
   const [number, setNumber] = useState("");
   const [counter, setCounter] = useState(0);
-  const [randomNumber, setRandomNumber] = useState(() => (Math.floor(Math.random() * 100) + 1));
+  const [randomNumber] = useState(() => (Math.floor(Math.random() * 100) + 1));
   const [msg, setMsg] = useState("Guess a number between 1-100");
   const [gameover, setGameover] = useState(false);
 
   const handleGuess = () => {
     const num = parseInt(number, 10);
 
-    if (isNaN(num)) {
+    if (isNaN(num) || num < 1 || num > 100) {
       Alert.alert("Please enter a valid number");
       return;
     }
