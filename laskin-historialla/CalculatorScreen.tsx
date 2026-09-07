@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import type { RootStackScreenProps } from './types';
 
-export default function App() {
+export default function CalculatorScreen ({navigation}: RootStackScreenProps<'Calculator'>) {
   const [number, setNumber] = useState("");
   const [number2, setNumber2] = useState("");
   const [result, setResult] = useState<number>();
@@ -39,40 +40,36 @@ export default function App() {
     setNumber('')
     setNumber2('')
   }
-  
 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <Text style={styles.resultText}>Result: {result}</Text>
         <TextInput 
-          style={styles.input}
-          placeholder = 'Enter first number here...'
-          keyboardType='decimal-pad'
-          onChangeText={setNumber}
-          value={number}
+        style={styles.input}
+        placeholder = 'Enter first number here...'
+        keyboardType='decimal-pad'
+        onChangeText={setNumber}
+        value={number}
         />
         <TextInput 
-          style={styles.input}
-          placeholder = 'Enter second number here...'
-          keyboardType='decimal-pad'
-          onChangeText={setNumber2}
-          value={number2}
+        style={styles.input}
+        placeholder = 'Enter second number here...'
+        keyboardType='decimal-pad'
+        onChangeText={setNumber2}
+        value={number2}
         />
         <View style={styles.buttonContainer}>
-          <Button title="-" onPress={handleMinus}/>
-          <Button title="+" onPress={handlePlus}/>
+        <Button title="-" onPress={handleMinus}/>
+        <Button title="+" onPress={handlePlus}/>
         </View>
-        <Text style={styles.resultText}>History</Text>
-        <FlatList 
-            style={{ width: '90%', marginTop: 10, marginLeft: 35}}
-            data={history}
-            renderItem={({item}) => 
-              <View style={styles.listView}>
-                <Text style={styles.input}>{item}</Text>
-              </View>
-            }
-          />
+
+        <View style={styles.resultText}>
+					<Button
+					title="History"
+					onPress={() => navigation.navigate('History', { history })}
+					/>
+        </View>
         <StatusBar style="auto" />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -84,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 100,
   },
   resultText: {
     paddingTop: 30,
@@ -101,13 +98,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '20%',
   },
-  listView: {
-    width: '90%', 
-    marginTop: 10,
-    alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 20,
-  },
+
 });

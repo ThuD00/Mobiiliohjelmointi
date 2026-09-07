@@ -24,7 +24,7 @@ export default function App() {
           name="Settings" 
           component={SettingScreen}
           options={{
-            tabBarIcon: ({ size, color }) => <Ionicons name="home" size={size} color="green" />
+            tabBarIcon: ({ size, color }) => <Ionicons name="settings" size={size} color="green" />
           }}
         />
       </Tab.Navigator>
