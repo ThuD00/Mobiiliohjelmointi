@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { GitFinder } from './GitFinder';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <GitFinder />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

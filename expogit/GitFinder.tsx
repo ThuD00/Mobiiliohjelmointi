@@ -19,7 +19,7 @@ export function GitFinder () {
     setLoading(true);
     //console.log(keyword); testi et toimiiko käyttäjä input
     //uudempi tapa:
-    //fetch(`${process.env.EXPO_PUBLIC_API_URL}${keyword}`)
+    //fetch(`${process.env.EXPO_PUBLIC_API_URL}?q=${keyword}`)
     fetch(process.env.EXPO_PUBLIC_API_URL + "?q=" + keyword)
     //console.log(response) testi
     .then(response => {
